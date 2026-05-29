@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HearD</title>
+
+<link rel="icon" href="/static/images/favicon.jpeg">
+
+<link rel="stylesheet" href="/static/css/style.css">
+
+<style>
+
+/* ===== 3 DOT MENU BUTTON ===== */
+.menu-btn{
+position:absolute;
+top:20px;
+right:25px;
+font-size:28px;
+cursor:pointer;
+color:#093915;
+}
+
+/* ===== POPUP MENU ===== */
+.menu{
+display:none;
+position:absolute;
+top:60px;
+right:25px;
+background:#ffffff;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+padding:10px;
+width:190px;
+z-index:1000;
+}
+
+/* ===== MENU LINKS ===== */
+.menu a{
+display:block;
+padding:10px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.menu a:hover{
+background:#f0f0f0;
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body class="home-bg">
+
+<!-- ===== THREE DOT MENU ===== -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<div id="menu" class="menu">
+<a href="/">Home</a>
+<a href="/gesture">Gesture → Text</a>
+<a href="/text">Text → Gesture</a>
+<a href="/learn">Learn Sign Language</a>
+<a href="/emergency">Emergency</a>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
+
+<h1>HearD</h1>
+
+<p class="tagline">Sign Language Simplified</p>
+
+<div class="buttons">
+
+<a href="/gesture">Gesture → Text</a>
+<a href="/text">Text → Gesture</a>
+<a href="/learn">Learn Sign Language</a>
+<a href="/emergency">Emergency</a>
+
+</div>
+
+</div>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+
+function toggleMenu(){
+let menu=document.getElementById("menu");
+
+if(menu.style.display==="block"){
+menu.style.display="none";
+}else{
+menu.style.display="block";
+}
+}
+
+/* OPTIONAL: CLOSE MENU WHEN CLICK OUTSIDE */
+window.onclick = function(event){
+if(!event.target.matches('.menu-btn')){
+let menu=document.getElementById("menu");
+if(menu.style.display==="block"){
+menu.style.display="none";
+}
+}
+}
+
+</script>
+
+</body>
+</html>

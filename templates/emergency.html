@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Emergency Help – HearD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/static/images/favicon.jpeg">
+
+<style>
+
+/* ===== NAVIGATION MENU ===== */
+
+.menu-btn{
+    position:fixed;
+    top:15px;
+    right:20px;
+    font-size:32px;
+    cursor:pointer;
+    z-index:1000;
+    color:white;
+}
+
+.menu{
+    display:none;
+    position:fixed;
+    top:60px;
+    right:20px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    padding:10px;
+    z-index:1000;
+}
+
+.menu a{
+    display:block;
+    padding:10px 20px;
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.menu a:hover{
+    background:#eee;
+    border-radius:6px;
+}
+
+/* ===== BODY ===== */
+
+body{
+    font-family:Arial, sans-serif;
+    background:#7b0000;
+    text-align:center;
+    margin:0;
+    padding:0;
+    color:white;
+    animation:bodyFlash 1.2s infinite;
+}
+
+/* ===== FLASHING BACKGROUND ===== */
+
+@keyframes bodyFlash{
+    0%{
+        background:#7b0000;
+    }
+
+    50%{
+        background:#ff0000;
+    }
+
+    100%{
+        background:#7b0000;
+    }
+}
+
+/* ===== HEADING ===== */
+
+h1{
+    background:#b71c1c;
+    padding:16px;
+    margin:0;
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+    padding:20px;
+}
+
+/* ===== EMERGENCY BUTTON ===== */
+
+#emergencyBtn{
+    background:#ff0000;
+    color:white;
+    font-size:22px;
+    padding:18px 30px;
+    border-radius:12px;
+    border:none;
+    cursor:pointer;
+    width:90%;
+    max-width:320px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(255,255,255,0.6);
+    animation:pulse 1.5s infinite;
+}
+
+/* ===== BUTTON PULSE ===== */
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ===== EMERGENCY BOX ===== */
+
+#emergencyBox{
+    display:none;
+    background:rgba(255,255,255,0.15);
+    border:3px solid white;
+    border-radius:12px;
+    padding:20px;
+    margin-top:25px;
+    animation:flash 1s infinite;
+}
+
+/* ===== BOX FLASH ===== */
+
+@keyframes flash{
+
+    0%{
+        background:rgba(255,255,255,0.1);
+    }
+
+    50%{
+        background:rgba(255,255,255,0.25);
+    }
+
+    100%{
+        background:rgba(255,255,255,0.1);
+    }
+}
+
+/* ===== ACTION BUTTONS ===== */
+
+.action-btn{
+    display:block;
+    margin:12px auto;
+    padding:14px;
+    width:90%;
+    max-width:300px;
+    font-size:18px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.call{
+    background:#2ecc71;
+}
+
+.location{
+    background:#3498db;
+}
+
+.stop{
+    background:#2c3e50;
+}
+
+/* ===== STATUS ===== */
+
+#status{
+    margin-top:12px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===== NAVIGATION BUTTON ===== -->
+
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<!-- ===== NAVIGATION MENU ===== -->
+
+<div id="menu" class="menu">
+
+<a href="/">Home</a>
+
+<a href="/gesture">Gesture → Text</a>
+
+<a href="/text">Text → Gesture</a>
+
+<a href="/learn">Learn Sign Language</a>
+
+<a href="/emergency">Emergency</a>
+
+</div>
+
+<!-- ===== PAGE TITLE ===== -->
+
+<h1>🚨 Emergency Help</h1>
+
+<!-- ===== MAIN CONTAINER ===== -->
+
+<div class="container">
+
+<p>
+Press the emergency button if you need immediate help.
+<br>
+No speech required.
+</p>
+
+<!-- ===== EMERGENCY BUTTON ===== -->
+
+<button id="emergencyBtn" onclick="triggerEmergency()">
+
+🚨 EMERGENCY
+
+</button>
+
+<!-- ===== STATUS TEXT ===== -->
+
+<div id="status"></div>
+
+<!-- ===== EMERGENCY BOX ===== -->
+
+<div id="emergencyBox">
+
+<h2>🚨 EMERGENCY ACTIVE</h2>
+
+<p>
+I need immediate help.
+<br>
+I may be unable to speak.
+<br>
+Please assist me.
+</p>
+
+<!-- ===== CALL BUTTON ===== -->
+
+<a class="action-btn call" href="tel:112">
+
+📞 Call Emergency (112)
+
+</a>
+
+<!-- ===== LOCATION BUTTON ===== -->
+
+<button class="action-btn location" onclick="shareLocation()">
+
+📍 Share My Location
+
+</button>
+
+<!-- ===== STOP BUTTON ===== -->
+
+<button class="action-btn stop" onclick="stopEmergency()">
+
+❌ Stop Emergency
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ===== ALARM AUDIO ===== -->
+
+<audio id="alarmSound" loop>
+
+<source src="/static/alarm/alarm.mpeg" type="audio/mpeg">
+
+</audio>
+
+<!-- ===== JAVASCRIPT ===== -->
+
+<script>
+
+/* ===== NAVIGATION MENU ===== */
+
+function toggleMenu(){
+
+let menu = document.getElementById("menu");
+
+if(menu.style.display === "block"){
+
+    menu.style.display = "none";
+
+}else{
+
+    menu.style.display = "block";
+
+}
+
+}
+
+/* ===== CLOSE MENU WHEN CLICKING OUTSIDE ===== */
+
+window.onclick = function(event){
+
+if(!event.target.matches('.menu-btn')){
+
+    let menu = document.getElementById("menu");
+
+    if(menu.style.display === "block"){
+
+        menu.style.display = "none";
+
+    }
+
+}
+
+}
+
+/* ===== ALARM ===== */
+
+const alarm = document.getElementById("alarmSound");
+
+let vibrationInterval = null;
+
+/* ===== ACTIVATE EMERGENCY ===== */
+
+function triggerEmergency(){
+
+document.getElementById("emergencyBox").style.display = "block";
+
+document.getElementById("status").innerText = "🚨 Emergency mode ON";
+
+/* PLAY ALARM */
+
+alarm.play().catch(() => {
+
+    alert("Tap again to allow alarm sound");
+
+});
+
+/* PHONE VIBRATION */
+
+if("vibrate" in navigator){
+
+    navigator.vibrate([1000,300,1000]);
+
+    vibrationInterval = setInterval(() => {
+
+        navigator.vibrate(1000);
+
+    },2000);
+
+}
+
+}
+
+/* ===== STOP EMERGENCY ===== */
+
+function stopEmergency(){
+
+document.getElementById("emergencyBox").style.display = "none";
+
+document.getElementById("status").innerText = "Emergency stopped";
+
+/* STOP SOUND */
+
+alarm.pause();
+
+alarm.currentTime = 0;
+
+/* STOP VIBRATION */
+
+if(vibrationInterval){
+
+    clearInterval(vibrationInterval);
+
+}
+
+if("vibrate" in navigator){
+
+    navigator.vibrate(0);
+
+}
+
+}
+
+/* ===== SHARE LOCATION ===== */
+
+function shareLocation(){
+
+if(!navigator.geolocation){
+
+    alert("Geolocation not supported");
+
+    return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+position => {
+
+    alert(
+
+        "📍 Location:\n" +
+
+        "Latitude: " + position.coords.latitude +
+
+        "\nLongitude: " + position.coords.longitude
+
+    );
+
+},
+
+() => {
+
+    alert("Location permission denied");
+
+}
+
+);
+
+}
+
+</script>
+
+</body>
+</html>

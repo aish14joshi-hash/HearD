@@ -1,0 +1,20 @@
+0 Hello/Bye/Five
+1 Stop/Help
+2 one
+3 Two/Peace
+4 Three
+5 Four
+6 Six
+7 Seven
+8 Eight
+9 Nine/Nice
+10 Thumps-up/Ten
+11 Zero
+12 Nothing
+13 Call
+14 I Love You/Love/Gratitude/Cool/Yo
+15 No
+16 Thankyou
+17 Respect
+18 Washroom/bathroom
+19 Food

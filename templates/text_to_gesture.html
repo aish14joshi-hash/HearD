@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>HearD - Text to Gesture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/static/images/favicon.jpeg">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/static/css/style.css">
+
+<style>
+
+/* THREE DOT MENU BUTTON */
+.menu-btn{
+position:absolute;
+top:20px;
+right:25px;
+font-size:28px;
+cursor:pointer;
+color:#000;
+}
+
+/* POPUP MENU */
+.menu{
+display:none;
+position:absolute;
+top:60px;
+right:25px;
+background:#ffffff;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+padding:10px;
+width:190px;
+z-index:1000;
+}
+
+/* MENU LINKS */
+.menu a{
+display:block;
+padding:10px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.menu a:hover{
+background:#f0f0f0;
+border-radius:6px;
+}
+
+body {
+text-align: center;
+font-family: Arial, sans-serif;
+background: #d8c3a5;
+padding: 20px;
+}
+
+.input-container {
+margin-top: 20px;
+}
+
+input {
+padding: 12px;
+width: 280px;
+font-size: 16px;
+border-radius: 6px;
+border: 1px solid #50c9de;
+outline:none;
+}
+
+button {
+padding: 12px 25px;
+font-size: 16px;
+cursor: pointer;
+background: #01132e;
+color: white;
+border: none;
+border-radius: 6px;
+margin-top: 10px;
+transition:0.3s;
+}
+
+button:hover {
+background: #b8c9e4;
+color:black;
+}
+
+.video-wrapper {
+margin: 30px auto;
+max-width: 500px;
+}
+
+#gestureVideo {
+width: 100%;
+border-radius: 10px;
+border: 3px solid #09172c;
+display: none;
+background: rgb(17, 58, 71);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- THREE DOT MENU -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<div id="menu" class="menu">
+<a href="/">Home</a>
+<a href="/gesture">Gesture → Text</a>
+<a href="/text">Text → Gesture</a>
+<a href="/learn">Learn Sign Language</a>
+<a href="/emergency">Emergency</a>
+</div>
+
+<h2>HearD : Text to Gesture</h2>
+<p>Type a word and see its sign language gesture</p>
+<p>Quick, Easy and Reliable</p>
+
+<div class="input-container">
+
+<input 
+type="text" 
+id="textInput" 
+placeholder="Example: HELLO, THANK YOU"
+>
+
+<br>
+
+<button onclick="showGesture()">
+Convert to Gesture
+</button>
+
+</div>
+
+<div class="video-wrapper">
+
+<video id="gestureVideo" controls loop muted playsinline>
+<source id="videoSource" src="" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</div>
+
+<!-- CONNECT JAVASCRIPT FILE -->
+<script src="/static/js/text_to_gesture.js"></script>
+
+</body>
+</html>
