@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learn Gestures - HearD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/static/images/favicon.jpeg">
+
+<style>
+
+/* ===== 3 DOT MENU BUTTON ===== */
+.menu-btn{
+position:absolute;
+top:20px;
+right:25px;
+font-size:28px;
+cursor:pointer;
+color:#502c43;
+}
+
+/* ===== POPUP MENU ===== */
+.menu{
+display:none;
+position:absolute;
+top:60px;
+right:25px;
+background:#ffffff;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+padding:10px;
+width:190px;
+z-index:1000;
+}
+
+/* ===== MENU LINKS ===== */
+.menu a{
+display:block;
+padding:10px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.menu a:hover{
+background:#f0f0f0;
+border-radius:6px;
+}
+
+/* ===== EXISTING STYLES ===== */
+body {
+    font-family: Arial, sans-serif;
+    background: #cc98cb;
+    text-align: center;
+}
+h2, h3 {
+    color: #502c43;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card {
+    width: 230px;
+    background: rgb(238, 202, 225);
+    margin: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.card video {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== THREE DOT MENU ===== -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<div id="menu" class="menu">
+<a href="/">Home</a>
+<a href="/gesture">Gesture → Text</a>
+<a href="/text">Text → Gesture</a>
+<a href="/learn">Learn Sign Language</a>
+<a href="/emergency">Emergency</a>
+</div>
+
+<h2>Learn Gestures – HearD</h2>
+<p>learn all the sign language gestures within one page</p>
+
+<!-- ================= MATCHED IMAGE + VIDEO ================= -->
+<h3>✅ Image + Video Gestures</h3>
+<div class="container">
+
+<div class="card">
+    <img src="/static/images/hello.jpeg">
+    <p><b>HELLO</b></p>
+    <video controls>
+        <source src="/static/videos/hello.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/goodbye.jpeg">
+    <p><b>GOODBYE</b></p>
+    <video controls>
+        <source src="/static/videos/goodbye.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/yes.jpeg">
+    <p><b>YES</b></p>
+    <video controls>
+        <source src="/static/videos/yes.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/no.jpeg">
+    <p><b>NO</b></p>
+    <video controls>
+        <source src="/static/videos/no.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/stop.jpeg">
+    <p><b>STOP</b></p>
+    <video controls>
+        <source src="/static/videos/stop.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/wait.jpeg">
+    <p><b>WAIT</b></p>
+    <video controls>
+        <source src="/static/videos/wait.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/help.jpeg">
+    <p><b>HELP</b></p>
+    <video controls>
+        <source src="/static/videos/help.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/emergency.jpeg">
+    <p><b>EMERGENCY</b></p>
+    <video controls>
+        <source src="/static/videos/emergency.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/call.jpeg">
+    <p><b>CALL</b></p>
+    <video controls>
+        <source src="/static/videos/call.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/danger.jpeg">
+    <p><b>DANGER</b></p>
+    <video controls>
+        <source src="/static/videos/danger.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/water.jpeg">
+    <p><b>WATER</b></p>
+    <video controls>
+        <source src="/static/videos/water.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/food.jpeg">
+    <p><b>FOOD</b></p>
+    <video controls>
+        <source src="/static/videos/food.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/bathroom.jpeg">
+    <p><b>BATHROOM</b></p>
+    <video controls>
+        <source src="/static/videos/bathroom.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/sleep.jpeg">
+    <p><b>SLEEP</b></p>
+    <video controls>
+        <source src="/static/videos/sleep.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/sit.jpeg">
+    <p><b>SIT</b></p>
+    <video controls>
+        <source src="/static/videos/sit.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/stand.jpeg">
+    <p><b>STAND</b></p>
+    <video controls>
+        <source src="/static/videos/stand.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/please.jpeg">
+    <p><b>PLEASE</b></p>
+    <video controls>
+        <source src="/static/videos/please.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/thankyou.jpeg">
+    <p><b>THANKYOU</b></p>
+    <video controls>
+        <source src="/static/videos/thankyou.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/sorry.jpeg">
+    <p><b>SORRY</b></p>
+    <video controls>
+        <source src="/static/videos/sorry.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/welcome.jpeg">
+    <p><b>WELCOME</b></p>
+    <video controls>
+        <source src="/static/videos/youre-welcome.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/respect.jpeg">
+    <p><b>RESPECT</b></p>
+    <video controls>
+        <source src="/static/videos/respect.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/happy.jpeg">
+    <p><b>HAPPY</b></p>
+    <video controls>
+        <source src="/static/videos/happy.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/sad.jpeg">
+    <p><b>SAD</b></p>
+    <video controls>
+        <source src="/static/videos/sad.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/angry.jpeg">
+    <p><b>ANGRY</b></p>
+    <video controls>
+        <source src="/static/videos/angry.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/afraid.jpeg">
+    <p><b>AFRAID</b></p>
+    <video controls>
+        <source src="/static/videos/afraid.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/love.jpeg">
+    <p><b>LOVE</b></p>
+    <video controls>
+        <source src="/static/videos/iloveyou.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/one.jpeg">
+    <p><b>ONE</b></p>
+    <video controls>
+        <source src="/static/videos/one.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/two.jpeg">
+    <p><b>TWO</b></p>
+    <video controls>
+        <source src="/static/videos/two.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/three.jpeg">
+    <p><b>THREE</b></p>
+    <video controls>
+        <source src="/static/videos/three.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/four.jpeg">
+    <p><b>FOUR</b></p>
+    <video controls>
+        <source src="/static/videos/four.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/five.jpeg">
+    <p><b>FIVE</b></p>
+    <video controls>
+        <source src="/static/videos/five.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/six.jpeg">
+    <p><b>SIX</b></p>
+    <video controls>
+        <source src="/static/videos/six.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/seven.jpeg">
+    <p><b>SEVEN</b></p>
+    <video controls>
+        <source src="/static/videos/seven.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/eight.jpeg">
+    <p><b>EIGHT</b></p>
+    <video controls>
+        <source src="/static/videos/eight.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/nine.jpeg">
+    <p><b>NINE</b></p>
+    <video controls>
+        <source src="/static/videos/nine.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <img src="/static/images/ten.jpeg">
+    <p><b>TEN</b></p>
+    <video controls>
+        <source src="/static/videos/ten.mp4">
+    </video>
+</div>
+
+</div>
+
+<h3>🖼 Images Only</h3>
+<div class="container">
+
+<div class="card">
+    <img src="/static/images/Alphabets.jpeg">
+    <p><b>ALPHABETS</b></p>
+</div>
+
+</div>
+
+<h3>🎥 Videos Only</h3>
+<div class="container">
+
+<div class="card">
+    <p><b>COLD</b></p>
+    <video controls>
+        <source src="/static/videos/cold.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>ZERO</b></p>
+    <video controls>
+        <source src="/static/videos/zero.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>SAFE</b></p>
+    <video controls>
+        <source src="/static/videos/safe.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>KIND</b></p>
+    <video controls>
+        <source src="/static/videos/kind.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>AREYOUALLRIGHT</b></p>
+    <video controls>
+        <source src="/static/videos/areyouallright.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>HOWAREYOUDOING</b></p>
+    <video controls>
+        <source src="/static/videos/howareyoudoing.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>CALL</b></p>
+    <video controls>
+        <source src="/static/videos/call.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>FOOD</b></p>
+    <video controls>
+        <source src="/static/videos/food.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>SLEEP</b></p>
+    <video controls>
+        <source src="/static/videos/sleep.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>ANNOYED</b></p>
+    <video controls>
+        <source src="/static/videos/annoyed.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>ANGRY</b></p>
+    <video controls>
+        <source src="/static/videos/angry.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>GOODNIGHT</b></p>
+    <video controls>
+        <source src="/static/videos/goodnight.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>SEEYOULATER</b></p>
+    <video controls>
+        <source src="/static/videos/seeyoulater.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>IDONTKNOW</b></p>
+    <video controls>
+        <source src="/static/videos/idontknow.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>WHATAREYOUDOING</b></p>
+    <video controls>
+        <source src="/static/videos/whatareyoudoing.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>AREYOUOKAY</b></p>
+    <video controls>
+        <source src="/static/videos/areyouokay.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>GOODMORNING</b></p>
+    <video controls>
+        <source src="/static/videos/goodmorning.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>GOODAFTERNOON</b></p>
+    <video controls>
+        <source src="/static/videos/goodafternoon.mp4">
+    </video>
+</div>
+
+<div class="card">
+    <p><b>GOODEVENING</b></p>
+    <video controls>
+        <source src="/static/videos/goodevening.mp4">
+    </video>
+</div>
+
+</div>
+
+<script>
+function toggleMenu(){
+let menu=document.getElementById("menu");
+
+if(menu.style.display==="block"){
+menu.style.display="none";
+}else{
+menu.style.display="block";
+}
+}
+
+window.onclick = function(event){
+if(!event.target.matches('.menu-btn')){
+let menu=document.getElementById("menu");
+if(menu.style.display==="block"){
+menu.style.display="none";
+}
+}
+}
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Gesture to Text | HearD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/static/images/favicon.jpeg">
+
+<style>
+
+/* MENU BUTTON */
+.menu-btn{
+position:absolute;
+top:20px;
+right:25px;
+font-size:28px;
+cursor:pointer;
+color:#093915;
+z-index:1000;
+}
+
+/* MENU */
+.menu{
+display:none;
+position:absolute;
+top:60px;
+right:25px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+padding:10px;
+width:190px;
+z-index:1000;
+}
+
+.menu a{
+display:block;
+padding:10px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.menu a:hover{
+background:#f0f0f0;
+border-radius:6px;
+}
+
+/* COLORS */
+:root {
+--primary: #bff1c2;
+--bg: #fff9c4;
+--card: #76b67b;
+--text-dark: #093915;
+}
+
+/* BODY */
+body {
+margin: 0;
+font-family: Arial;
+background: var(--bg);
+text-align: center;
+color: var(--text-dark);
+}
+
+h2 {
+margin-top: 15px;
+}
+
+.subtitle {
+opacity: 0.85;
+}
+
+/* CAMERA */
+.camera-card {
+background: var(--card);
+padding: 15px;
+border-radius: 16px;
+margin: 15px auto;
+max-width: 600px;
+position: relative;
+}
+
+video {
+width: 100%;
+border-radius: 14px;
+transform: scaleX(-1);
+border: 4px solid var(--primary);
+}
+
+/* AI BOX */
+.ai-box{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:220px;
+height:220px;
+border:4px solid #00ff66;
+border-radius:20px;
+pointer-events:none;
+}
+
+/* RESULT */
+#result {
+margin-top: 15px;
+font-size: 1.6rem;
+font-weight: bold;
+background:#263c28;
+color:#7caf92;
+padding:15px;
+border-radius:10px;
+min-height:50px;
+}
+
+/* BUTTON */
+button {
+margin-top: 15px;
+padding: 12px 20px;
+border:none;
+border-radius:10px;
+background: var(--primary);
+font-size:16px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:active {
+transform: scale(0.97);
+}
+
+/* INFO BOX */
+.info-box {
+margin: 20px;
+padding: 15px;
+background: var(--card);
+border-radius: 12px;
+line-height:1.6;
+}
+
+/* STATUS */
+.status{
+margin-top:10px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<div id="menu" class="menu">
+<a href="/">Home</a>
+<a href="/gesture">Gesture → Text</a>
+<a href="/text">Text → Gesture</a>
+<a href="/learn">Learn</a>
+<a href="/emergency">Emergency</a>
+</div>
+
+<h2>🤖 AI Gesture to Text</h2>
+<p class="subtitle">Real-time gesture recognition using Python AI backend</p>
+
+<div class="camera-card">
+
+<video id="webcam" autoplay playsinline muted></video>
+<div class="ai-box"></div>
+
+</div>
+
+<button onclick="toggleCamera()">🔄 Switch Camera</button>
+
+<div id="result">Starting camera...</div>
+
+<div class="status" id="status">
+Allow camera permission to continue
+</div>
+
+<div class="info-box">
+
+<b>How it works:</b><br>
+This HearD module uses your trained Python AI backend model.<br>
+Show gestures clearly inside the green box for better accuracy.<br><br>
+
+<b>Accessibility:</b><br>
+- Designed for speech-impaired and able-bodied users.<br>
+- Works on laptops, desktops, mobiles and tablets.<br>
+- Supports real-time AI gesture communication.<br><br>
+
+<b>Detected basic features like:</b><br>
+
+✅ Hello<br>
+✅ Yes / No<br>
+✅ Numbers<br>
+✅ Call Gesture<br>
+
+</div>
+
+<script>
+
+/* MENU */
+function toggleMenu(){
+let menu=document.getElementById("menu");
+menu.style.display =
+(menu.style.display==="block") ? "none" : "block";
+}
+
+window.onclick = function(e){
+if(!e.target.matches('.menu-btn')){
+document.getElementById("menu").style.display="none";
+}
+}
+
+/* CAMERA */
+let currentCamera="user";
+let stream;
+let loopStarted = false;
+
+async function startCamera(){
+
+if(stream){
+stream.getTracks().forEach(t => t.stop());
+}
+
+try{
+
+stream = await navigator.mediaDevices.getUserMedia({
+video:{
+facingMode: currentCamera,
+width:640,
+height:480
+}
+});
+
+let video=document.getElementById("webcam");
+
+video.srcObject=stream;
+
+video.onloadedmetadata=()=>{
+
+video.play();
+
+if(!loopStarted){
+startLoop();
+loopStarted = true;
+}
+
+};
+
+document.getElementById("status").innerText =
+"Camera active (" + currentCamera + ")";
+
+}
+catch(err){
+
+console.log(err);
+
+try{
+
+stream = await navigator.mediaDevices.getUserMedia({
+video:true
+});
+
+let video=document.getElementById("webcam");
+
+video.srcObject=stream;
+
+video.onloadedmetadata=()=>{
+
+video.play();
+
+if(!loopStarted){
+startLoop();
+loopStarted = true;
+}
+
+};
+
+document.getElementById("status").innerText =
+"Using default camera";
+
+}
+catch(error){
+
+document.getElementById("status").innerText =
+"Camera access denied";
+
+document.getElementById("result").innerText =
+"❌ Camera Error";
+
+console.log(error);
+
+}
+
+}
+
+}
+
+/* SWITCH CAMERA */
+function toggleCamera(){
+
+currentCamera =
+(currentCamera==="user")
+? "environment"
+: "user";
+
+startCamera();
+
+}
+
+/* CAPTURE IMAGE */
+function capture(){
+
+let video=document.getElementById("webcam");
+
+let canvas=document.createElement("canvas");
+
+canvas.width=224;
+canvas.height=224;
+
+let ctx=canvas.getContext("2d");
+
+ctx.drawImage(video,0,0,224,224);
+
+return canvas.toDataURL("image/jpeg");
+
+}
+
+/* PREDICT FROM FLASK BACKEND */
+async function predict(){
+
+let img = capture();
+
+try{
+
+let res = await fetch("/predict",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+image:img
+})
+});
+
+let data = await res.json();
+
+if(data.prediction){
+
+document.getElementById("result").innerText =
+data.prediction.toUpperCase() +
+" (" + data.confidence + "%)";
+
+}
+else{
+
+document.getElementById("result").innerText =
+"Detecting...";
+
+}
+
+}
+catch(err){
+
+document.getElementById("result").innerText =
+"Backend not connected";
+
+console.log(err);
+
+}
+
+}
+
+/* LOOP */
+function startLoop(){
+
+setInterval(()=>{
+
+let video=document.getElementById("webcam");
+
+if(video.readyState === 4){
+predict();
+}
+
+},1000);
+
+}
+
+/* START */
+startCamera();
+
+</script>
+
+</body>
+</html>
