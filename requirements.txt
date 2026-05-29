@@ -4,3 +4,4 @@ opencv-python
 numpy
 Pillow
 keras
+tensorflow==2.21.0 
